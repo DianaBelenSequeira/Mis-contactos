@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <table>
+
+        <thead>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Numero</th>
+        </thead>
+
+        <tbody>
+            {% for contacto in lista_contactos %}
+            <td>{{contacto.nombre}}</td>
+            <td>{{contacto.apellido}}</td>
+            <td>{{contacto.cedula}}</td>
+            
+
+            <td>
+                <form action="{{url_for('actualizar', contacto_id=contacto.id)}}", method="get">
+                    <input type="submit", value="Actualizar">
+                </form>
+            </td>
+
+            <td>
+                <form action="/eliminar", method="post">
+                    <input type="hidden", name="contacto_id", value="{{contacto.id}}">
+                    <input type="submit", value="Eliminar">
+                </form>
+            </td>
+
+
+        </tbody>
+
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>
